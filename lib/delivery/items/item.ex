@@ -2,7 +2,6 @@ defmodule Delivery.Items.Item do
   use Ecto.Schema
 
   import Ecto.Changeset
-  import Ecto.Query, warn: false
 
   @primary_key {:id, :string, autogenerate: false}
 
