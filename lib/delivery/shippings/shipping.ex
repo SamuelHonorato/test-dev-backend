@@ -3,6 +3,7 @@ defmodule Delivery.Shippings.Shipping do
 
   import Ecto.Changeset
 
+  alias Delivery.Addresses.Address
   alias Delivery.Orders.Order
 
   schema "shippings" do
@@ -11,6 +12,8 @@ defmodule Delivery.Shippings.Shipping do
     field :date_created, :utc_datetime
 
     belongs_to :order, Order
+
+    has_one :receiver_address, Address
 
     timestamps()
   end
@@ -36,6 +39,7 @@ defmodule Delivery.Shippings.Shipping do
     |> validate_inclusion(:shipment_type, ["shipping"])
     |> foreign_key_constraint(:order_id)
     |> unique_constraint(:id, name: :shippings_pkey)
+    |> cast_assoc(:receiver_address)
   end
 
 end
