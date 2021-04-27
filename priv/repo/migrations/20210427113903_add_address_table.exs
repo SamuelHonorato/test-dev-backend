@@ -2,7 +2,7 @@ defmodule Delivery.Repo.Migrations.AddAddressTable do
   use Ecto.Migration
 
   def change do
-    create table(:adresses) do
+    create table(:addresses) do
       add :address_line, :string
       add :street_name, :string
       add :street_number, :string
@@ -12,6 +12,7 @@ defmodule Delivery.Repo.Migrations.AddAddressTable do
       add :longitude, :float
       add :receiver_phone, :string
 
+      add :shipping_id, references(:shippings)
       add :neighborhood_id, references(:neighborhoods)
       add :city_id, references(:cities)
       add :state_id, references(:states)
