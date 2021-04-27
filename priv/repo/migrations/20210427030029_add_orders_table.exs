@@ -12,6 +12,7 @@ defmodule Delivery.Repo.Migrations.AddOrdersTable do
       add :total_amount_with_shipping, :integer
       add :paid_amount, :integer
       add :expiration_date, :utc_datetime
+      add :status, :string
 
       timestamps()
     end
