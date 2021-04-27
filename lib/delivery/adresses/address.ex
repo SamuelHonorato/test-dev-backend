@@ -19,7 +19,7 @@ defmodule Delivery.Addresses.Address do
 
     belongs_to :shipping, Shipping
     belongs_to :neighborhood, Neighborhood
-    belongs_to :city, State
+    belongs_to :city, City
     belongs_to :state, State
     belongs_to :country, Country, type: :string
 
