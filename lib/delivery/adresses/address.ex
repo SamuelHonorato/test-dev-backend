@@ -35,6 +35,7 @@ defmodule Delivery.Addresses.Address do
     latitude
     longitude
     receiver_phone
+    shipping_id
     neighborhood_id
     city_id
     state_id
