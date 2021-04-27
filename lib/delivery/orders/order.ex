@@ -15,6 +15,7 @@ defmodule Delivery.Orders.Order do
     field :total_amount_with_shipping, :integer
     field :paid_amount, :integer
     field :expiration_date, :utc_datetime
+    field :status, :string
 
     timestamps()
   end
@@ -30,6 +31,7 @@ defmodule Delivery.Orders.Order do
     total_amount_with_shipping
     paid_amount
     expiration_date
+    status
   )a
 
   @required_changeset_fields ~w(
@@ -43,6 +45,7 @@ defmodule Delivery.Orders.Order do
     total_amount_with_shipping
     paid_amount
     expiration_date
+    status
   )a
 
   @money_fields [:total_amount, :total_shipping, :total_amount_with_shipping, :paid_amount]
@@ -55,6 +58,7 @@ defmodule Delivery.Orders.Order do
     order
     |> cast(attrs, @cast_changeset_fields)
     |> validate_required(@required_changeset_fields)
+    |> validate_inclusion(:status, ["paid"])
     |> unique_constraint(:id, name: :orders_pkey)
   end
 
