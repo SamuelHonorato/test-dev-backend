@@ -43,6 +43,8 @@ defmodule Delivery.OrderItems.OrderItem do
     |> cast(attrs, @cast_changeset_fields)
     |> validate_required(@required_changeset_fields)
     |> unique_constraint([:order_id, :item_id], name: :order_items_pkey)
+    |> foreign_key_constraint(:order_id)
+    |> foreign_key_constraint(:item_id)
   end
 
 end
