@@ -45,12 +45,33 @@ defmodule Delivery.Orders.Order do
     expiration_date
   )a
 
+  @money_fields [:total_amount, :total_shipping, :total_amount_with_shipping, :paid_amount]
+
   @doc false
   def changeset(order, attrs) do
+
+    attrs = convert_decimal_money_to_cents(attrs, @money_fields)
+
     order
     |> cast(attrs, @cast_changeset_fields)
     |> validate_required(@required_changeset_fields)
     |> unique_constraint(:id, name: :orders_pkey)
   end
+
+  def convert_decimal_money_to_cents(attrs, fields) do
+    fields = fields |> Enum.map(&Atom.to_string/1)
+
+    Enum.reduce(fields, attrs, fn field, attrs ->
+      value = attrs[field]
+
+      if is_nil(value) do
+        attrs
+      else
+        money_in_cents = Kernel.trunc(value * 100)
+        Map.put(attrs, field, money_in_cents)
+      end
+    end)
+  end
+
 
 end
