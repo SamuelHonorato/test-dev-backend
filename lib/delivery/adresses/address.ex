@@ -57,6 +57,10 @@ defmodule Delivery.Addresses.Address do
     address
     |> cast(attrs, @cast_changeset_fields)
     |> validate_required(@required_changeset_fields)
+    |> cast_assoc(:neighborhood)
+    |> cast_assoc(:city)
+    |> cast_assoc(:state)
+    |> cast_assoc(:country)
   end
 
 end
