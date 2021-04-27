@@ -73,5 +73,4 @@ defmodule Delivery.Orders.Order do
     end)
   end
 
-
 end
