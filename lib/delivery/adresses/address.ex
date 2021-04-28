@@ -27,6 +27,7 @@ defmodule Delivery.Addresses.Address do
   end
 
   @cast_changeset_fields ~w(
+    id
     address_line
     street_name
     street_number
