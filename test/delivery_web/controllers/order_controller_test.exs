@@ -101,7 +101,6 @@ defmodule DeliveryWeb.OrderControllerTest do
         Orders.list_orders()
         |> Repo.preload([shipping: :receiver_address])
         |> Repo.preload([buyer: [:phone, :billing_info]])
-        |> Repo.preload([buyer: [:phone, :billing_info]])
         |> Repo.preload([order_items: :item])
         |> Repo.preload([:payments])
 
