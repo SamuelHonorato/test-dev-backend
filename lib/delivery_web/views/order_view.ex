@@ -8,7 +8,7 @@ defmodule DeliveryWeb.OrderView do
 
   def render("order.json", %{order: order}) do
     %{
-      id: order.id,
+      id: order.id
     }
   end
 end
