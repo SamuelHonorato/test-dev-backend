@@ -13,18 +13,24 @@ defmodule Delivery.Services.Recruitment.OrderView do
     params
   end
 
+  def render("order.response.bad_request", params) do
+    params
+  end
+
   def format_order(%Order{} = order) do
     %{
       "externalCode" => order.id,
       "storeId" => order.store_id,
       "subTotal" => order.total_amount/100,
       "deliveryFee" => order.total_shipping/100,
+      "total_shipping" => order.total_shipping/100,
       "total" => order.total_amount_with_shipping/100,
       "dtOrderCreate" => order.date_created,
       "customer" => format_customer(order.buyer),
       "items" => Enum.map(order.order_items, &format_order_item/1),
       "payments" => Enum.map(order.payments, &format_payment/1)
     }
+    |> Map.merge(format_address(order.shipping.receiver_address))
   end
 
   def format_customer(%Buyer{} = buyer) do

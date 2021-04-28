@@ -16,7 +16,11 @@ defmodule Delivery.Orders do
   end
 
   def send_order_to_recruitment(%Order{} = order) do
-    OrderService.order(order)
+    case OrderService.create_order(order) do
+      {:ok, body} -> {:ok, body}
+      {:error, :bad_request, body} -> {:error, :bad_request, body}
+      {:error, :order, :unmapped_response} -> :error
+    end
   end
 
 end

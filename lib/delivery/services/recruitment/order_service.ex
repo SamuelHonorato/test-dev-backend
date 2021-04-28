@@ -10,18 +10,19 @@ defmodule Delivery.Services.Recruitment.OrderService do
   plug Tesla.Middleware.JSON
 
   @success 200
+  @bad_request 400
 
-  def order(params) do
+  def create_order(params) do
     request_body = render("order.request", params)
 
     response =
       "/"
       |> post(request_body)
-      |> IO.inspect
       |> handle_response()
 
     case response do
       {:ok, @success, body} -> {:ok, render("order.response.success", body)}
+      {:error, @bad_request, body} -> {:error, :bad_request, render("order.response.bad_request", body)}
       _ -> {:error, :order, :unmapped_response}
     end
   end
