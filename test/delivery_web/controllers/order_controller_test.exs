@@ -120,6 +120,13 @@ defmodule DeliveryWeb.OrderControllerTest do
       assert order.buyer.id == 136226073
     end
 
+    @tag order_controller: "create_unprocessable_entity"
+    test "return create unprocessable_entity", %{conn: conn} do
+      conn = post(conn, Routes.order_path(conn, :create), %{})
+
+      assert conn.status == 422
+    end
+
   end
 
 end
