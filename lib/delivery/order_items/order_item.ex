@@ -3,8 +3,8 @@ defmodule Delivery.OrderItems.OrderItem do
 
   import Ecto.Changeset
 
-  alias Delivery.Orders.Order
   alias Delivery.Items.Item
+  alias Delivery.Orders.Order
 
   @primary_key false
 

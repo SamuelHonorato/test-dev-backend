@@ -10,7 +10,7 @@ defmodule Delivery.Services.Recruitment.Config do
     end
   end
 
-  def x_sent_header() do
+  def x_sent_header do
     date_time_now = DateTime.utc_now
 
     hour = Format.hour(date_time_now)

@@ -3,14 +3,19 @@
 https://bitbucket.org/delivery_center/test-dev-backend-elixir/src/master/
 
 Para iniciar o serviço:
-  * `docker-compose up --build`
+  * Executar o comando `docker-compose up --build` dentro do diretório raiz do projeto 
+  * OBS: o arquivo `environment.env` NÃO foi adicionado no `.gitignore` para facilitar a execução do projeto
   
-Para iniciar os testes do serviço:
-  * `docker exec -ti delivery_service mix test`
+Para iniciar os testes do serviço - após subir o container:
+  * Executar o comando `docker exec -ti delivery_service mix test` dentro do diretório raiz do projeto
 
-O serviço roda em [`localhost:4000`](http://localhost:4000).
+Para iniciar verificação de código do serviço - após subir o container:
+  * Executar o comando `docker exec -ti delivery_service mix credo` ou `docker exec -ti delivery_service mix credo --strict` dentro do diretório raiz do projeto
 
-Para realizar uma chamada via curl:
+
+A API roda em [`localhost:4000`](http://localhost:4000).
+
+Para realizar o cadastro de um pedido via curl:
   * `curl --location --request POST 'http://localhost:4000/api/orders' \
      --header 'Content-Type: application/json' \
      --data-raw '{

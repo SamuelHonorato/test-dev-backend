@@ -3,7 +3,7 @@ defmodule Delivery.Addresses.Address do
 
   import Ecto.Changeset
 
-  alias Delivery.Addresses.{Country, City, Neighborhood, State}
+  alias Delivery.Addresses.{City, Country, Neighborhood, State}
   alias Delivery.Shippings.Shipping
 
   schema "addresses" do

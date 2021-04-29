@@ -3,8 +3,8 @@ defmodule Delivery.Buyers.Buyer do
 
   import Ecto.Changeset
 
-  alias Delivery.Orders.Order
   alias Delivery.Buyers.{BillingInfo, Phone}
+  alias Delivery.Orders.Order
 
   schema "buyers" do
 

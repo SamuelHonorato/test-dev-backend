@@ -3,10 +3,10 @@ defmodule Delivery.Orders.Order do
 
   import Ecto.Changeset
 
+  alias Delivery.Buyers.Buyer
   alias Delivery.OrderItems.OrderItem
   alias Delivery.Payments.Payment
   alias Delivery.Shippings.Shipping
-  alias Delivery.Buyers.Buyer
 
   schema "orders" do
 

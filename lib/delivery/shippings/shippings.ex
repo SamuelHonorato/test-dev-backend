@@ -1,7 +1,7 @@
 defmodule Delivery.Shippings do
 
-  alias Delivery.Shippings.Shipping
   alias Delivery.Repo
+  alias Delivery.Shippings.Shipping
 
   def create_shipping(attrs \\ %{}) do
     %Shipping{}
