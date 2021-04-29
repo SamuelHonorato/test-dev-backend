@@ -4,7 +4,7 @@ defmodule Delivery.Services.Recruitment.Config do
 
   def get_base_url(:api) do
     if System.get_env("ENV") == "dev" do
-      "https://delivery-center-recruitment-ap.herokuapp.com"
+      System.get_env("SERVICE_RECRUIMENT_URL")
     else
       "/"
     end

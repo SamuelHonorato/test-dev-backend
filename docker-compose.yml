@@ -1,0 +1,42 @@
+version: "3.5"
+
+volumes:
+  delivery.db.data:
+    driver: local
+
+networks:
+  delivery.network:
+    driver: bridge
+
+services:
+
+  delivery.local:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    container_name: "delivery_service"
+    env_file:
+      - ./environment.env
+    ports:
+      - "4000:4000"
+    working_dir: /app
+    networks:
+      - delivery.network
+    depends_on:
+      - delivery.db
+    volumes:
+      - ./:/app:delegated
+
+  delivery.db:
+    image: postgres:11.4
+    container_name: "delivery_service_db"
+    ports:
+      - "5432:5432"
+    networks:
+      - delivery.network
+    environment:
+      - POSTGRES_DB=delivery_db
+      - POSTGRES_PASSWORD=delivery
+      - POSTGRES_USER=delivery
+    volumes:
+      - delivery.db.data:/var/lib/postgresql/data

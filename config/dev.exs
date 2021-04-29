@@ -2,10 +2,10 @@ use Mix.Config
 
 # Configure your database
 config :delivery, Delivery.Repo,
-  username: "postgres",
-  password: "postgres",
-  database: "delivery_dev",
-  hostname: "localhost",
+  username: "delivery",
+  password: "delivery",
+  database: "delivery_db_dev",
+  hostname: "delivery_service_db",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
