@@ -2,6 +2,7 @@ defmodule Delivery.Orders.Order do
   use Ecto.Schema
 
   import Ecto.Changeset
+  import Ecto.Query, warn: false
 
   alias Delivery.Buyers.Buyer
   alias Delivery.OrderItems.OrderItem
@@ -90,5 +91,11 @@ defmodule Delivery.Orders.Order do
       end
     end)
   end
+
+  @doc false
+
+  def query_main, do: from(order in __MODULE__, as: :order)
+
+  def where_id(query, id), do: from([order: order] in query, where: order.id == ^id)
 
 end

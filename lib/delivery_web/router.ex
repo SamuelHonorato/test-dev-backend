@@ -8,7 +8,7 @@ defmodule DeliveryWeb.Router do
   scope "/api", DeliveryWeb do
     pipe_through :api
 
-    resources "/orders", OrderController, only: [:create]
+    resources "/orders", OrderController, only: [:create, :show]
   end
 
   # Enables LiveDashboard only for development

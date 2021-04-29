@@ -9,6 +9,17 @@ defmodule Delivery.Orders do
     Repo.all(Order)
   end
 
+  def get_order(id) do
+    order = get_order!(id)
+    if is_nil(order), do: :order_not_found, else: {:ok, order}
+  end
+
+  def get_order!(id) do
+    Order.query_main
+    |> Order.where_id(id)
+    |> Repo.one
+  end
+
   def create_order(attrs \\ %{}) do
     %Order{}
     |> Order.changeset(attrs)

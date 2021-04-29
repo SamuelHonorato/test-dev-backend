@@ -1,10 +1,23 @@
 defmodule DeliveryWeb.OrderController do
   use DeliveryWeb, :controller
 
-  import Helpers.ConnHelper, only: [created: 1, unprocessable_entity: 1, bad_request: 1, internal_server_error: 1]
+  import Helpers.ConnHelper
 
   alias Delivery.Orders
   alias Helpers.ChangesetHelper
+
+  def show(conn, params) do
+    id = params["id"]
+
+    with {:ok, order} <- Orders.get_order(id) do
+
+      success(conn)
+      |> render("show.json", %{order: order})
+    else
+      :order_not_found ->
+        not_found(conn)
+    end
+  end
 
   def create(conn, params) do
 
