@@ -1,10 +1,7 @@
 defmodule DeliveryWeb.OrderController do
   use DeliveryWeb, :controller
 
-  import Helpers.ConnHelper
-
   alias Delivery.Orders
-  alias Helpers.ChangesetHelper
 
   def show(conn, params) do
     id = params["id"]
