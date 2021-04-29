@@ -1,10 +1,23 @@
 defmodule DeliveryWeb.OrderControllerTest do
   use DeliveryWeb.ConnCase, async: true
 
+  import Tesla.Mock
+
   alias Delivery.Orders
   alias Delivery.Repo
 
   describe "create/2" do
+
+    setup do
+
+      mock(fn
+        %{method: :post, url: "/"} ->
+          %Tesla.Env{status: 200, body: "OK"
+          }
+      end)
+
+      :ok
+    end
 
     @tag order_controller: "create_success"
     test "return create success", %{conn: conn} do

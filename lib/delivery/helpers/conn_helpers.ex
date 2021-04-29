@@ -7,6 +7,7 @@ defmodule Helpers.ConnHelper do
   @created_status_code 201
   @bad_request_status_code 400
   @unprocessable_entity_status_code 422
+  @internal_server_error_status_code 500
 
   def created(conn) do
     conn
@@ -24,6 +25,13 @@ defmodule Helpers.ConnHelper do
     conn
     |> put_resp_content_type(@content_type)
     |> send_resp(@unprocessable_entity_status_code, "")
+    |> halt()
+  end
+
+  def internal_server_error(conn) do
+    conn
+    |> put_resp_content_type(@content_type)
+    |> send_resp(@internal_server_error_status_code, "Erro Interno do Servidor")
     |> halt()
   end
 

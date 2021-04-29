@@ -3,7 +3,11 @@ defmodule Delivery.Services.Recruitment.Config do
   alias Helpers.FormatDateTimeHelper, as: Format
 
   def get_base_url(:api) do
-    "https://delivery-center-recruitment-ap.herokuapp.com"
+    if System.get_env("ENV") == "dev" do
+      "https://delivery-center-recruitment-ap.herokuapp.com"
+    else
+      "/"
+    end
   end
 
   def x_sent_header() do

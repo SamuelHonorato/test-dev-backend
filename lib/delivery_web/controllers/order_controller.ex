@@ -1,7 +1,7 @@
 defmodule DeliveryWeb.OrderController do
   use DeliveryWeb, :controller
 
-  import Helpers.ConnHelper, only: [created: 1, unprocessable_entity: 1, bad_request: 1]
+  import Helpers.ConnHelper, only: [created: 1, unprocessable_entity: 1, bad_request: 1, internal_server_error: 1]
 
   alias Delivery.Orders
 
@@ -20,6 +20,8 @@ defmodule DeliveryWeb.OrderController do
         |> json(%{error: body})
       {:error, changeset} ->
         unprocessable_entity(conn)
+      _ ->
+        internal_server_error(conn)
     end
 
   end
