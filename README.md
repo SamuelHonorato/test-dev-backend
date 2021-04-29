@@ -4,13 +4,14 @@ https://bitbucket.org/delivery_center/test-dev-backend-elixir/src/master/
 
 Para iniciar o serviço:
   * Execute o comando `docker-compose up --build` dentro do diretório raiz do projeto 
-  * Será criado um container `delivery_service` (Elixir) na porta 4000 e um serviço `delivery_db` (Postgresql) na porta 5432 
+  * Será criado um container `delivery_service` (Elixir) na porta 4000 e um serviço `delivery_service_db` (Postgresql) na porta 5432
+  * Para obter as credenciais do banco de dados: acessar o arquivo `config/dev.exs`
   * OBS: o arquivo `environment.env` NÃO foi adicionado no `.gitignore` para facilitar a execução do projeto
   
-Para rodar os testes do serviço - após subir o container:
+Para rodar os testes da aplicação - após subir o container:
   * Execute o comando `docker exec -ti delivery_service mix test`
 
-Para iniciar verificação da consistência código do serviço - após subir o container:
+Para iniciar verificação da consistência código da aplicação - após subir o container:
   * Executar o comando `docker exec -ti delivery_service mix credo` ou `docker exec -ti delivery_service mix credo --strict`
 
 
