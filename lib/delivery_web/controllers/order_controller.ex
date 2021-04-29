@@ -3,6 +3,7 @@ defmodule DeliveryWeb.OrderController do
 
   import Helpers.ConnHelper, only: [created: 1, unprocessable_entity: 1, bad_request: 1, internal_server_error: 1]
 
+  alias Helpers.ChangesetHelper
   alias Delivery.Orders
 
   def create(conn, params) do
@@ -19,7 +20,11 @@ defmodule DeliveryWeb.OrderController do
         |> bad_request()
         |> json(%{error: body})
       {:error, changeset} ->
-        unprocessable_entity(conn)
+        errors = ChangesetHelper.format_error(changeset)
+
+        conn
+        |> unprocessable_entity()
+        |> json(%{error: errors})
       _ ->
         internal_server_error(conn)
     end

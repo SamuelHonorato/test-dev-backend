@@ -24,8 +24,7 @@ defmodule Helpers.ConnHelper do
   def unprocessable_entity(conn) do
     conn
     |> put_resp_content_type(@content_type)
-    |> send_resp(@unprocessable_entity_status_code, "")
-    |> halt()
+    |> put_status(@unprocessable_entity_status_code)
   end
 
   def internal_server_error(conn) do
