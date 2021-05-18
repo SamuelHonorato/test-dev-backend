@@ -71,10 +71,10 @@ defmodule Delivery.Orders.Order do
     |> validate_required(@required_changeset_fields)
     |> validate_inclusion(:status, ["paid"])
     |> unique_constraint(:id, name: :orders_pkey)
-    |> cast_assoc(:shipping)
-    |> cast_assoc(:buyer)
-    |> cast_assoc(:order_items)
-    |> cast_assoc(:payments)
+    |> cast_assoc(:shipping, required: true)
+    |> cast_assoc(:buyer, required: true)
+    |> cast_assoc(:order_items, required: true)
+    |> cast_assoc(:payments, required: true)
   end
 
   def convert_decimal_money_to_cents(attrs, fields) do

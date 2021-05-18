@@ -18,8 +18,8 @@ defmodule DeliveryWeb.OrderController do
 
   def create(conn, params) do
 
-    with {:ok, order} <- Orders.create_order(params),
-         {:ok, _response_body} <- Orders.send_order_to_recruitment(order) do
+    with {:ok, order} <- Orders.create_order(params) do
+#         {:ok, _response_body} <- Orders.send_order_to_recruitment(order) do
 
       conn
       |> created()

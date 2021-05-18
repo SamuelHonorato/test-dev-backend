@@ -6,6 +6,8 @@ defmodule Delivery.Application do
   use Application
 
   def start(_type, _args) do
+    import Supervisor.Spec
+
     children = [
       # Start the Ecto repository
       Delivery.Repo,
@@ -14,9 +16,22 @@ defmodule Delivery.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Delivery.PubSub},
       # Start the Endpoint (http/https)
-      DeliveryWeb.Endpoint
+      DeliveryWeb.Endpoint,
+#      worker(Mongo, [[database:
+#        Application.get_env(:delivery, :db)[:name], name: :mongo]])
       # Start a worker by calling: Delivery.Worker.start_link(arg)
       # {Delivery.Worker, arg}
+#      {Mongo, [name: :mongo, database: "delivery_mongo_db", pool_size: 2]}
+#      {Mongo, [
+#        name: :mongo,
+#        database: "delivery_mongo_db",
+#        hostname: "delivery_mongo",
+#        username: "root",
+#        password: "example",
+#        pool_size: 2
+#      ]}
+#      worker(Mongo, [[name: :mongo, database: "delivery_mongo_db", pool_size: 3]]),
+#      worker(Mongo, [[name: :mongo, database: "delivery_mongo_db", seeds: ["delivery_mongo:27017"], pool: DBConnection.Pool]])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -32,3 +47,4 @@ defmodule Delivery.Application do
     :ok
   end
 end
+

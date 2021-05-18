@@ -1,0 +1,41 @@
+#version: "3"
+#
+#services:
+#  nginx:
+#    build:
+#      dockerfile: ./docker/ngnix.dockerfile
+#      context: .
+#    image: samuelhonorato/nginx
+#    container_name: nginx
+#    ports:
+#      - "80:80"
+#    networks:
+#      - nomedarede-network
+#    depends_on:
+#      - "mongodb"
+#      - "node1"
+#
+#  mongodb:
+#    image: mongo
+#    networks:
+#      - nomedarede-network
+#  node1:
+#    build:
+#      dockerfile: ./docker/node.dockerfile
+#      context: .
+#      image: samuelhonorato/node1
+#      conteiner_name: node1
+#      ports:
+#        - "3000"
+#      networks:
+#        - nomedarede-network
+#      depends_on:
+#        - "mongodb"
+#
+#networks:
+#  - nomedarede-network:
+#      driver: bridge
+#
+## docker-compose build
+#
+#

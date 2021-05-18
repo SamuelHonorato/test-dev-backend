@@ -20,7 +20,7 @@ defmodule Delivery.MixProject do
   def application do
     [
       mod: {Delivery.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :mongodb, :poolboy]
     ]
   end
 
@@ -45,7 +45,9 @@ defmodule Delivery.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:tesla, "~> 1.4.0"},
       {:poison, "~> 3.1"},
-      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:mongodb, ">= 0.0.0"},
+      {:poolboy, ">= 0.0.0"}
     ]
   end
 
